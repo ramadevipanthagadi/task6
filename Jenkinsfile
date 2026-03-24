@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'mymave'   
-        jdk 'jdk11'      
+         
     }
 
     environment {
