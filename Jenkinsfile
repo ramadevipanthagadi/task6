@@ -45,7 +45,7 @@ pipeline {
             steps {
                 sh '''
                 echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                docker tag $IMAGE_NAME:latest $DOCKER_USER/$IMAGE_NAME:latest
+                docker tag rose:latest $DOCKER_USER/$IMAGE_NAME:latest
                 docker push $DOCKER_USER/$IMAGE_NAME:latest
                 '''
             }
