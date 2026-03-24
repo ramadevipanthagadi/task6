@@ -2,13 +2,15 @@ pipeline {
     agent any
 
     tools {
-        maven 'mymave'
+        maven 'mymave'   
+        jdk 'jdk11'      
     }
 
     environment {
-        DOCKER_USER  = 'sunithriyansh'          // your DockerHub username
-        DOCKER_PASS  = credentials('dockerhub-id')  // Jenkins credential ID (DO NOT hardcode password)
+        DOCKER_USER  = 'sunithriyansh'
+        DOCKER_PASS  = credentials('dockerhub-id')  
         IMAGE_NAME   = 'rose'
+        MAVEN_OPTS   = '-Dmaven.repo.local=$WORKSPACE/.m2/repository'
     }
 
     stages {
@@ -21,7 +23,8 @@ pipeline {
 
         stage('Build with Maven') {
             steps {
-                sh 'mvn clean package'
+                sh 'mkdir -p $WORKSPACE/.m2/repository'
+                sh 'mvn clean package -Dmaven.repo.local=$WORKSPACE/.m2/repository'
             }
         }
 
@@ -55,6 +58,7 @@ pipeline {
                 sh 'kubectl apply -f k8s/ingress.yml'
             }
         }
+
     }
 
     post {
