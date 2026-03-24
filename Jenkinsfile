@@ -30,14 +30,14 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $IMAGE_NAME .'
+                sh 'docker build -t rose .'
             }
         }
 
         stage('Docker Run') {
             steps {
                 sh 'docker rm -f cont1 || true'
-                sh 'docker run -d --name cont1 -p 8010:80 $IMAGE_NAME'
+                sh 'docker run -d --name cont1 -p 8010:80 rose'
             }
         }
 
