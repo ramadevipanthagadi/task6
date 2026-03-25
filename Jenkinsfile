@@ -42,7 +42,7 @@ pipeline {
                 pwd
                 echo "Files in workspace:"
                 ls -R
-                kubectl apply -f k8s/
+                kubectl apply -f k8s/deployment.yml
                 '''
             }
         }
