@@ -36,9 +36,9 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                sh 'kubectl apply -f k8s/deployment.yml'
-                sh 'kubectl apply -f k8s/service.yml'
-                sh 'kubectl apply -f k8s/ingress.yml'
+                sh 'kubectl apply -f deployment.yml'
+                sh 'kubectl apply -f service.yml'
+                sh 'kubectl apply -f ingress.yml'
             }
         }
     }
